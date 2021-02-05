@@ -2,6 +2,10 @@
 
 These items are __not__ in priority order.
 
-- task 1
-- task 2
-
+- Make system use catalogue
+- Sale many items
+- Track stock
+  
+# Done
+- Sale one item
+- Add items to the catalogue

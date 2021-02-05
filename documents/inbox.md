@@ -2,6 +2,7 @@
 
 These items are __not__ in priority order.
 
+- Provide a "UI"
 - Make system use catalogue
 - Sale many items
 - Track stock

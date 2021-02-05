@@ -2,7 +2,8 @@
 
 These items are __not__ in priority order.
 
-- Sale one item
-- Sale many items
-- Track stock
-- Add items to the catalogue
+[] Make system use catalogue
+[x] Sale one item
+[] Sale many items
+[] Track stock
+[x] Add items to the catalogue

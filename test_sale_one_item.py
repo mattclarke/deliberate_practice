@@ -1,5 +1,5 @@
 from catalogue import Catalogue
-from system import System, UnknownBarcode
+from cart import Cart, UnknownBarcode
 
 
 def create_catalogue():
@@ -10,25 +10,25 @@ def create_catalogue():
 
 
 def test_can_add_one_item_and_retrieve_its_price_as_the_total():
-    system = System(create_catalogue())
+    cart = Cart(create_catalogue())
 
-    system.add_item_by_barcode("1234567890")
+    cart.add_item_by_barcode("1234567890")
 
-    assert system.calculate_total() == 1234
+    assert cart.calculate_total() == 1234
 
 
 def test_can_add_a_different_item_and_retrieve_its_price_as_the_total():
-    system = System({"1234567890": 1234, "42424242": 42})
+    cart = Cart(create_catalogue())
 
-    system.add_item_by_barcode("42424242")
+    cart.add_item_by_barcode("42424242")
 
-    assert system.calculate_total() == 42
+    assert cart.calculate_total() == 42
 
 
 def test_adding_unknown_barcode_raises_exception():
-    system = System({"1234567890": 1234, "42424242": 42})
+    cart = Cart(create_catalogue())
 
     try:
-        system.add_item_by_barcode("unknown")
+        cart.add_item_by_barcode("unknown")
     except UnknownBarcode:
         pass

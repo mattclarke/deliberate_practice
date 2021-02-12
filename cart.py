@@ -12,8 +12,11 @@ class Cart:
         except KeyError:
             raise UnknownBarcode
 
-    def calculate_total(self):
+    def total_in_cents(self) -> int:
         return self._total
+
+    def get_formatted_total(self):
+        return f"${self._total}"
 
 
 class UnknownBarcode(Exception):

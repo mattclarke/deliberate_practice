@@ -2,8 +2,12 @@
 
 These items are __not__ in priority order.
 
-[] Make system use catalogue
-[x] Sale one item
-[] Sale many items
-[] Track stock
-[x] Add items to the catalogue
+- Provide a "UI"
+- Make system use catalogue
+- Sale many items
+- Track stock
+  
+# Done
+- Sale one item
+- Add items to the catalogue
+

@@ -2,7 +2,6 @@
 
 These items are __not__ in priority order.
 
-- Sale many items
 - Track stock
   
 # Done
@@ -10,4 +9,4 @@ These items are __not__ in priority order.
 - Add items to the catalogue
 - Provide a "UI"
 - Make system use catalogue
-
+- Sale many items

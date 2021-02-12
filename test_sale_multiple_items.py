@@ -25,6 +25,3 @@ def test_can_sell_different_items():
     cart.add_item_by_barcode("54321")
 
     assert cart.calculate_total() == 800
-
-def test_get_total_with_no_items():
-    pass

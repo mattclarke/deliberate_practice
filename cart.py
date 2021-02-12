@@ -8,7 +8,7 @@ class Cart:
 
     def add_item_by_barcode(self, barcode: str):
         try:
-            self._total = self._items.get_price(barcode)
+            self._total += self._items.get_price(barcode)
         except KeyError:
             raise UnknownBarcode
 

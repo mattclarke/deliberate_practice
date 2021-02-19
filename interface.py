@@ -1,7 +1,6 @@
 from catalogue import Catalogue
-from cart import Cart
-
-command_total = "total"
+from cart import Cart, format_total
+from command_parsing import COMMAND_TOTAL, COMMAND_FINISH
 
 if __name__ == "__main__":
     catalogue = Catalogue()
@@ -12,8 +11,11 @@ if __name__ == "__main__":
 
     while True:
         command = input(">")
-        if command == command_total:
-            print(f"total = {system.get_formatted_total()}")
-            break
-
-        system.add_item_by_barcode(command)
+        if command == COMMAND_TOTAL:
+            print(f"total = {format_total(system.total_in_cents())}")
+        elif command == COMMAND_FINISH:
+            system.finish_sale()
+        else:
+            system.add_item_by_barcode(
+                command.split(" ")[0], int(command.split(" ")[1])
+            )

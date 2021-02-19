@@ -1,4 +1,6 @@
-from cart import Cart
+import pytest
+
+from cart import Cart, InvalidOperation
 from catalogue import Catalogue
 
 
@@ -25,3 +27,25 @@ def test_can_sell_different_items():
     cart.add_item_by_barcode("54321")
 
     assert cart.total_in_cents() == 800
+
+
+def test_can_add_multiples_of_item_to_cart():
+    item_price = 123
+    catalogue = Catalogue()
+    catalogue.add_new_product("12345", item_price)
+    cart = Cart(catalogue)
+
+    multiples_of_item = 2
+    cart.add_item_by_barcode("12345", multiple=multiples_of_item)
+
+    assert cart.total_in_cents() == multiples_of_item * item_price
+
+
+def test_cannot_add_fewer_than_one_item_to_cart():
+    item_price = 123
+    catalogue = Catalogue()
+    catalogue.add_new_product("12345", item_price)
+    cart = Cart(catalogue)
+
+    with pytest.raises(InvalidOperation):
+        cart.add_item_by_barcode("12345", multiple=0)

@@ -2,26 +2,35 @@ from catalogue import Catalogue
 import locale
 
 
+def format_total(total_in_cents: int) -> str:
+    locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+    total_in_dollars = total_in_cents / 100
+    return locale.currency(total_in_dollars, grouping=True)
+
+
 class Cart:
     def __init__(self, items: Catalogue):
         self._items = items
         self._total = 0
-        locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
 
-    def add_item_by_barcode(self, barcode: str):
+    def add_item_by_barcode(self, barcode: str, multiple: int = 1):
+        if multiple < 1:
+            raise InvalidOperation("Must add 1 or more items to cart")
         try:
-            self._total += self._items.get_price(barcode)
+            self._total += self._items.get_price(barcode) * multiple
         except KeyError:
             raise UnknownBarcode
 
     def total_in_cents(self) -> int:
         return self._total
 
-    def get_formatted_total(self):
-        # TODO smell: this belongs somewhere else?
-        total_in_dollars = self._total / 100
-        return locale.currency(total_in_dollars, grouping=True)
+    def finish_sale(self):
+        self._total = 0
 
 
 class UnknownBarcode(Exception):
+    pass
+
+
+class InvalidOperation(Exception):
     pass

@@ -1,11 +1,11 @@
-from cart import Cart
+from cart import Cart, format_total
 from catalogue import Catalogue
 
 
 def test_get_zero_total():
     cart = Cart(Catalogue())
 
-    total = cart.get_formatted_total()
+    total = format_total(cart.total_in_cents())
 
     assert total == "$0.00"
 
@@ -17,7 +17,7 @@ def test_non_zero_low_total():
 
     cart.add_item_by_barcode("12345")
 
-    assert cart.get_formatted_total() == "$1.23"
+    assert format_total(cart.total_in_cents()) == "$1.23"
 
 
 def test_non_zero_high_total():
@@ -27,4 +27,4 @@ def test_non_zero_high_total():
 
     cart.add_item_by_barcode("12345")
 
-    assert cart.get_formatted_total() == "$1,234,567.89"
+    assert format_total(cart.total_in_cents()) == "$1,234,567.89"

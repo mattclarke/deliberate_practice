@@ -13,7 +13,7 @@ if __name__ == "__main__":
     while True:
         command = input(">")
         if command == command_total:
-            print(f"total = {system.total_in_cents()}")
+            print(f"total = {system.get_formatted_total()}")
             break
 
         system.add_item_by_barcode(command)

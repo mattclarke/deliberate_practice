@@ -18,3 +18,13 @@ def test_non_zero_low_total():
     cart.add_item_by_barcode("12345")
 
     assert cart.get_formatted_total() == "$1.23"
+
+
+def test_non_zero_high_total():
+    catalogue = Catalogue()
+    catalogue.add_new_product("12345", 123456789)
+    cart = Cart(catalogue)
+
+    cart.add_item_by_barcode("12345")
+
+    assert cart.get_formatted_total() == "$1,234,567.89"

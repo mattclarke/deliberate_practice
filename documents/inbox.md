@@ -2,9 +2,12 @@
 
 These items are __not__ in priority order.
 
-- Command parsing [WIP]
+- Tidy command parsing [WIP]
 - Apply sales tax to "luxury" items on total
 - Track stock
+- What happens after "finish"? Initialise new sale?
+- Print sale receipt
+
   
 # Done
 - Sale one item
@@ -15,3 +18,5 @@ These items are __not__ in priority order.
 - Total to come out formatted like $1.23
 - Serve next customer without restarting
 - Add multiples of the same item to cart in one go, e.g. 2x12345
+- Command parsing 
+- "total ::extra info::" is malformed? Yes!

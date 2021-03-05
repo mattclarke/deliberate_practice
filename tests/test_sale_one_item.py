@@ -1,5 +1,6 @@
 from catalogue import Catalogue
-from cart import Cart, UnknownBarcode
+from cart import Cart
+from exceptions import UnknownBarcode
 
 
 def create_catalogue():

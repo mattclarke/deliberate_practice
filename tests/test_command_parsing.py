@@ -5,9 +5,8 @@ from command_parsing import (
     COMMAND_TOTAL,
     COMMAND_FINISH,
     COMMAND_SCAN,
-    UnrecognisedCommand,
-    MalformedCommand,
 )
+from exceptions import UnrecognisedCommand, MalformedCommand
 from unittest import mock
 import pytest
 
@@ -99,3 +98,14 @@ def test_exception_raised_on_commands_with_too_many_parameters(command, paramete
 
     with pytest.raises(MalformedCommand):
         parse_command(incomplete_command, cart)
+
+
+def test_leading_and_trailing_command_whitespace_is_ignored():
+    mock_cart = mock.create_autospec(Cart)
+
+    barcode = "123"
+    command_input = f" {COMMAND_SCAN} {barcode} 1 "
+
+    parse_command(command_input, mock_cart)
+
+    mock_cart.add_item_by_barcode.assert_called_once()

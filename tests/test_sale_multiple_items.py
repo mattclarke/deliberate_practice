@@ -1,6 +1,7 @@
 import pytest
 
-from cart import Cart, InvalidOperation
+from cart import Cart
+from exceptions import InvalidOperation
 from catalogue import Catalogue
 
 

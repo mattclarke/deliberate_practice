@@ -2,11 +2,11 @@
 
 These items are __not__ in priority order.
 
-- Tidy command parsing [WIP]
-- Apply sales tax to "luxury" items on total
+- Apply sales tax to "luxury" items on total [WIP]
+  - Need to declare with items are taxed
 - Track stock
-- What happens after "finish"? Initialise new sale?
 - Print sale receipt
+- Use cmd module
 
   
 # Done
@@ -20,3 +20,7 @@ These items are __not__ in priority order.
 - Add multiples of the same item to cart in one go, e.g. 2x12345
 - Command parsing 
 - "total ::extra info::" is malformed? Yes!
+- Tidy command parsing
+- use command parser!!!!
+- What happens after "finish"? Initialise new sale?
+- quit command

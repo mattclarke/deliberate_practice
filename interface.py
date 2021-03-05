@@ -1,6 +1,7 @@
 from catalogue import Catalogue
-from cart import Cart, format_total
-from command_parsing import COMMAND_TOTAL, COMMAND_FINISH
+from cart import Cart
+from exceptions import PointOfSaleError
+from command_parsing import COMMANDS, parse_command
 
 if __name__ == "__main__":
     catalogue = Catalogue()
@@ -9,13 +10,16 @@ if __name__ == "__main__":
 
     system = Cart(catalogue)
 
+    print(f"Commands are: {', '.join(COMMANDS)}")
+
     while True:
-        command = input(">")
-        if command == COMMAND_TOTAL:
-            print(f"total = {format_total(system.total_in_cents())}")
-        elif command == COMMAND_FINISH:
-            system.finish_sale()
-        else:
-            system.add_item_by_barcode(
-                command.split(" ")[0], int(command.split(" ")[1])
-            )
+        command = input("> ").strip()
+        if command == "quit":
+            break
+
+        try:
+            response = parse_command(command, system)
+            if response is not None:
+                print(f"{response}")
+        except PointOfSaleError as e:
+            print(e)

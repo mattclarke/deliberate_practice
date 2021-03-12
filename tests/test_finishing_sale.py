@@ -13,4 +13,4 @@ def test_after_finish_sale_cart_is_cleared():
 
     cart.finish_sale()
 
-    assert cart.total_in_cents() == 0
+    assert cart.net_total() == 0

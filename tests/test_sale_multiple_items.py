@@ -14,7 +14,7 @@ def test_can_sell_same_items_multiple_times():
     cart.add_item_by_barcode(some_barcode)
     cart.add_item_by_barcode(some_barcode)
 
-    assert cart.total_in_cents() == 246
+    assert cart.net_total() == 246
 
 
 def test_can_sell_different_items():
@@ -27,7 +27,7 @@ def test_can_sell_different_items():
     cart.add_item_by_barcode("67890")
     cart.add_item_by_barcode("54321")
 
-    assert cart.total_in_cents() == 800
+    assert cart.net_total() == 800
 
 
 def test_can_add_multiples_of_item_to_cart():
@@ -39,7 +39,7 @@ def test_can_add_multiples_of_item_to_cart():
     multiples_of_item = 2
     cart.add_item_by_barcode("12345", multiple=multiples_of_item)
 
-    assert cart.total_in_cents() == multiples_of_item * item_price
+    assert cart.net_total() == multiples_of_item * item_price
 
 
 def test_cannot_add_fewer_than_one_item_to_cart():

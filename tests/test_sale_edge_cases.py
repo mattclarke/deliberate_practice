@@ -7,7 +7,7 @@ def test_get_total_with_no_items():
     catalogue = Catalogue()
     cart = Cart(catalogue)
 
-    assert cart.total_in_cents() == 0
+    assert cart.net_total() == 0
 
 
 def test_total_remains_same_after_unknown_barcode():
@@ -19,4 +19,4 @@ def test_total_remains_same_after_unknown_barcode():
     except UnknownBarcode:
         pass
 
-    assert cart.total_in_cents() == 0
+    assert cart.net_total() == 0

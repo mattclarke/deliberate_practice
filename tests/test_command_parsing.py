@@ -13,11 +13,11 @@ import pytest
 
 def test_total_command_requests_total():
     mock_cart = mock.create_autospec(Cart)
-    mock_cart.total_in_cents.return_value = 100
+    mock_cart.gross_total.return_value = 100
 
     parse_command(COMMAND_TOTAL, mock_cart)
 
-    mock_cart.total_in_cents.assert_called_once()
+    mock_cart.gross_total.assert_called_once()
 
 
 def test_finish_command_requests_finish():

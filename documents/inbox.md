@@ -2,12 +2,9 @@
 
 These items are __not__ in priority order.
 
-- Apply sales tax to "luxury" items on total [WIP]
-  - Need to declare with items are taxed
+- Use cmd module
 - Track stock
 - Print sale receipt
-- Use cmd module
-
   
 # Done
 - Sale one item
@@ -24,3 +21,4 @@ These items are __not__ in priority order.
 - use command parser!!!!
 - What happens after "finish"? Initialise new sale?
 - quit command
+- Apply sales tax to "luxury" items on total

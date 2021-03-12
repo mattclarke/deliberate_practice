@@ -51,7 +51,7 @@ def execute_command_total(cart: Cart, split_command: List[str], command: str):
         raise MalformedCommand(
             f"'{command}' is malformed as it does not take parameters"
         )
-    return format_total(cart.total_in_cents())
+    return format_total(cart.gross_total())
 
 
 def _get_barcode_and_quantity(

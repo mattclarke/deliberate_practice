@@ -15,7 +15,7 @@ def test_can_add_one_item_and_retrieve_its_price_as_the_total():
 
     cart.add_item_by_barcode("1234567890")
 
-    assert cart.total_in_cents() == 1234
+    assert cart.net_total() == 1234
 
 
 def test_can_add_a_different_item_and_retrieve_its_price_as_the_total():
@@ -23,7 +23,7 @@ def test_can_add_a_different_item_and_retrieve_its_price_as_the_total():
 
     cart.add_item_by_barcode("42424242")
 
-    assert cart.total_in_cents() == 42
+    assert cart.net_total() == 42
 
 
 def test_adding_unknown_barcode_raises_exception():

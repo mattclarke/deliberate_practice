@@ -6,7 +6,7 @@ from command_parsing import COMMANDS, parse_command
 if __name__ == "__main__":
     catalogue = Catalogue()
     catalogue.add_new_product("12345", 345)
-    catalogue.add_new_product("23473", 273)
+    catalogue.add_new_product("23473", 273, is_taxable=True)
 
     system = Cart(catalogue)
 

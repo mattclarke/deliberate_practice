@@ -2,7 +2,7 @@
 
 These items are __not__ in priority order.
 
-- Use cmd module
+- Use cmd module [WIP]
 - Track stock
 - Print sale receipt
   

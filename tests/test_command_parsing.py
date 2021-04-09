@@ -1,6 +1,7 @@
 from cart import Cart
 from catalogue import Catalogue
 from command_parsing import (
+    execute_comand_scan,
     parse_command,
     COMMAND_TOTAL,
     COMMAND_FINISH,
@@ -32,10 +33,10 @@ def test_scan_command_is_processed():
     mock_cart = mock.create_autospec(Cart)
 
     barcode = "123"
-    quantity = 2
-    command_input = f"{COMMAND_SCAN} {barcode} {quantity}"
+    quantity = "2"
+    command_input = [barcode, quantity]
 
-    parse_command(command_input, mock_cart)
+    execute_comand_scan(mock_cart, command_input, COMMAND_SCAN)
 
     mock_cart.add_item_by_barcode.assert_called_once()
 
@@ -59,35 +60,38 @@ def test_exception_raised_on_empty_command():
 def test_exception_raised_on_scan_with_no_barcode_etc():
     cart = Cart(Catalogue())
 
-    incomplete_command = f"{COMMAND_SCAN}"
+    incomplete_command = []
 
     with pytest.raises(MalformedCommand):
-        parse_command(incomplete_command, cart)
+        execute_comand_scan(cart, incomplete_command, COMMAND_SCAN)
 
 
 def test_exception_raised_on_scan_with_non_numeric_quantity():
     cart = Cart(Catalogue())
 
-    scan_command = f"{COMMAND_SCAN} 123 abc"
+    scan_command = ["123", "abc"]
 
     with pytest.raises(MalformedCommand):
-        parse_command(scan_command, cart)
+        execute_comand_scan(cart, scan_command, COMMAND_SCAN)
 
 
 def test_exception_raised_on_scan_with_non_integer_quantity():
     cart = Cart(Catalogue())
 
-    scan_command = f"{COMMAND_SCAN} 123 1.12"
+    scan_args = ["123", "1.12"]
 
     with pytest.raises(MalformedCommand):
-        parse_command(scan_command, cart)
+        execute_comand_scan(cart, scan_args, COMMAND_SCAN)
 
 
 @pytest.mark.parametrize(
     "command, parameters",
     [
         (COMMAND_SCAN, "12345 1 ::extra::"),
-        (COMMAND_FINISH, "::extra::"),
+        (
+            COMMAND_FINISH,
+            "::extra::",
+        ),
         (COMMAND_TOTAL, "::extra::"),
     ],
 )
@@ -98,14 +102,3 @@ def test_exception_raised_on_commands_with_too_many_parameters(command, paramete
 
     with pytest.raises(MalformedCommand):
         parse_command(incomplete_command, cart)
-
-
-def test_leading_and_trailing_command_whitespace_is_ignored():
-    mock_cart = mock.create_autospec(Cart)
-
-    barcode = "123"
-    command_input = f" {COMMAND_SCAN} {barcode} 1 "
-
-    parse_command(command_input, mock_cart)
-
-    mock_cart.add_item_by_barcode.assert_called_once()

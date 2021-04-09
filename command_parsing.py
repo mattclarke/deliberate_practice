@@ -25,7 +25,7 @@ def parse_command(command_input: str, cart: Cart) -> Optional[str]:
 
 
 def execute_comand_scan(cart: Cart, split_command: List[str], command: str):
-    if len(split_command) > 3:
+    if len(split_command) > 2:
         raise MalformedCommand(
             f"'{command}' is malformed, should be of form: barcode quantity"
         )
@@ -58,8 +58,8 @@ def _get_barcode_and_quantity(
     command: str, split_command: List[str]
 ) -> Tuple[str, int]:
     try:
-        barcode = split_command[1]
-        quantity = int(split_command[2])
+        barcode = split_command[0]
+        quantity = int(split_command[1])
     except IndexError:
         raise MalformedCommand(
             f"'{command}' is malformed, should be of form: barcode quantity"

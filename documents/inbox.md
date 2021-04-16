@@ -2,8 +2,9 @@
 
 These items are __not__ in priority order.
 
-- Use cmd module [WIP]
 - Track stock
+- Itemised cart [WIP]
+- Data class for item
 - Print sale receipt
   
 # Done
@@ -22,3 +23,4 @@ These items are __not__ in priority order.
 - What happens after "finish"? Initialise new sale?
 - quit command
 - Apply sales tax to "luxury" items on total
+- Use cmd module

@@ -33,3 +33,20 @@ def test_adding_unknown_barcode_raises_exception():
         cart.add_item_by_barcode("unknown")
     except UnknownBarcode:
         pass
+
+
+def test_get_items_in_empty_basket():
+    cart = Cart(create_catalogue())
+
+    assert not cart.get_items()
+
+
+def test_get_items_in_basket_with_one_item():
+    cart = Cart(create_catalogue())
+    barcode_scanned = "42424242"
+    cart.add_item_by_barcode(barcode_scanned)
+
+    items = cart.get_items()
+
+    assert len(items) == 1
+    assert barcode_scanned in items[0]

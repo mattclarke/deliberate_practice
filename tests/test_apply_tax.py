@@ -11,7 +11,7 @@ def test_taxable_items_have_tax_applied():
     cart = Cart(catalogue)
     cart.add_item_by_barcode(barcode)
 
-    assert cart.gross_total() == price * TAX_MULTIPLIER
+    assert cart.gross_total() == int(price * TAX_MULTIPLIER)
 
 
 def test_non_taxable_items_do_not_have_tax_applied():
@@ -38,9 +38,9 @@ def test_multiple_items_some_taxed_some_not_taxed():
         catalogue.add_new_product(barcode, price, taxable)
         cart.add_item_by_barcode(barcode, quantity)
 
-    contribution_from_item_1 = 1234 * TAX_MULTIPLIER
-    contribution_from_item_2 = 3273 * 3
-    contribution_from_item_3 = 234 * TAX_MULTIPLIER * 2
+    contribution_from_item_1 = int(1234 * TAX_MULTIPLIER)
+    contribution_from_item_2 = int(3273 * 3)
+    contribution_from_item_3 = int(234 * TAX_MULTIPLIER * 2)
     assert (
         cart.gross_total()
         == contribution_from_item_1

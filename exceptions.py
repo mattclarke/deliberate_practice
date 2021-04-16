@@ -3,10 +3,6 @@ class PointOfSaleError(Exception):
         super().__init__(message)
 
 
-class UnrecognisedCommand(PointOfSaleError):
-    pass
-
-
 class MalformedCommand(PointOfSaleError):
     pass
 

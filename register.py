@@ -3,8 +3,15 @@ from typing import Optional
 
 from catalogue import Catalogue
 from cart import Cart
-from exceptions import PointOfSaleError
-from command_parsing import COMMANDS, parse_command, execute_command_scan, COMMAND_SCAN
+from command_parsing import (
+    COMMANDS,
+    execute_command_scan,
+    COMMAND_SCAN,
+    execute_command_total,
+    COMMAND_TOTAL,
+    execute_command_finish,
+    COMMAND_FINISH,
+)
 from typing import List
 
 
@@ -28,15 +35,22 @@ class CashRegister(cmd.Cmd):
         return True
 
     def do_scan(self, arg: str) -> Optional[bool]:
-        print(arg)
         execute_command_scan(self.system, split_command(arg), f"{COMMAND_SCAN} {arg}")
         return None
 
     def do_finish(self, arg: str) -> Optional[bool]:
-        pass
+        execute_command_finish(
+            self.system, split_command(arg), f"{COMMAND_FINISH} {arg}"
+        )
+        return None
 
     def do_total(self, arg: str) -> Optional[bool]:
-        pass
+        print(
+            execute_command_total(
+                self.system, split_command(arg), f"{COMMAND_TOTAL} {arg}"
+            )
+        )
+        return None
 
     def precmd(self, line: str) -> str:
         return line.strip()
@@ -45,22 +59,6 @@ class CashRegister(cmd.Cmd):
 if __name__ == "__main__":
     catalogue = Catalogue()
     catalogue.add_new_product("12345", 345)
-    catalogue.add_new_product("23473", 273, is_taxable=True)
+    catalogue.add_new_product("23456", 273, is_taxable=True)
 
     CashRegister(catalogue).cmdloop()
-
-    system = Cart(catalogue)
-
-    print(f"Commands are: {', '.join(COMMANDS)}")
-
-    while True:
-        command = input("> ").strip()
-        if command == "quit":
-            break
-
-        try:
-            response = parse_command(command, system)
-            if response is not None:
-                print(f"{response}")
-        except PointOfSaleError as e:
-            print(e)

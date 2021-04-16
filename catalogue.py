@@ -19,4 +19,4 @@ class Catalogue:
         return barcode in self._items
 
     def get_price(self, barcode: str) -> Tuple[int, bool]:
-        return astuple(self._items[barcode])
+        return astuple(self._items[barcode])  # type: ignore

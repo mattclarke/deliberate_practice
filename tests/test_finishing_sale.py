@@ -14,3 +14,4 @@ def test_after_finish_sale_cart_is_cleared():
     cart.finish_sale()
 
     assert cart.net_total() == 0
+    assert cart.gross_total() == 0
